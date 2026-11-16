@@ -1,56 +1,97 @@
-# Welcome to your Expo app 👋
+# STORYTUNE
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Persönlicher KI-Musikberater für Instagram Stories. Foto hochladen → Wirkung wählen → passende Songs, abgestimmt auf Bild **und** persönlichen Musikgeschmack.
 
-## Get started
+> Projektstand, Architektur und nächste Schritte: **[PROJECT_STATUS.md](./PROJECT_STATUS.md)**
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## App auf dem Smartphone starten (Expo Go)
 
-2. Start the app
+### Einmalig auf dem PC
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+1. **Node.js** installieren – Version **22.13 oder neuer** (LTS) von <https://nodejs.org>.
+2. **Git** installieren (empfohlen) – <https://git-scm.com>.
+3. Projektordner entpacken, z. B. nach `C:\Projekte\storytune`.
+4. Im Projektordner ein Terminal öffnen (Windows: im Ordner `Shift + Rechtsklick` → „In Terminal öffnen“) und ausführen:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+### Einmalig auf dem Smartphone
 
-### Other setup steps
+- **Expo Go** aus dem App Store bzw. Google Play Store installieren (bzw. aktualisieren – das Projekt nutzt **Expo SDK 58**).
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+### Jedes Mal zum Starten
 
-## Learn more
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+- Im Terminal erscheint ein QR-Code.
+- **Android:** In Expo Go auf „Scan QR code“ tippen.
+- **iPhone:** QR-Code mit der normalen Kamera-App scannen.
+- PC und Handy müssen im **selben WLAN** sein.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+**Verbindet sich nicht?**
 
-## Join the community
+- Windows fragt beim ersten Start nach der Firewall → für **private Netzwerke** erlauben.
+- Gäste-/Uni-/Firmen-WLANs blockieren oft Geräte untereinander. Dann:
 
-Join our community of developers creating universal apps.
+```bash
+npx expo start --tunnel
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Meldet Expo Go „incompatible SDK“: Expo Go im Store aktualisieren.
+
+---
+
+## Lokale Bild-KI (Ollama) – Vorbereitung für Phase 4
+
+1. Ollama installieren: <https://ollama.com/download>
+2. Bildmodell laden (Empfehlung siehe `scripts/check-env.ps1`):
+
+```bash
+ollama pull qwen3-vl:4b
+```
+
+3. Ollama im WLAN erreichbar machen (Windows):
+   - Systemsteuerung → „Umgebungsvariablen für dieses Konto bearbeiten“ → Neu: `OLLAMA_HOST` = `0.0.0.0`
+   - Ollama beenden (Tray-Icon) und neu starten.
+   - Firewall-Freigabe (PowerShell **als Administrator**):
+
+```powershell
+New-NetFirewallRule -DisplayName "Ollama (STORYTUNE)" -Direction Inbound -Protocol TCP -LocalPort 11434 -Action Allow -Profile Private
+```
+
+4. In der App: **Einstellungen → Server-Adresse** = IP deines PCs (z. B. `192.168.178.20`) → **Verbindung testen**.
+
+---
+
+## Umgebung prüfen
+
+Windows (PowerShell, im Projektordner):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\check-env.ps1
+```
+
+macOS / Linux:
+
+```bash
+bash scripts/check-env.sh
+```
+
+Das Skript zeigt Node/Git/Ollama-Versionen, RAM, Grafikkarte, die IP-Adresse für die App und empfiehlt ein Bildmodell. Es verändert nichts.
+
+---
+
+## Entwicklerbefehle
+
+| Befehl | Zweck |
+| --- | --- |
+| `npm start` | Entwicklungsserver (QR-Code für Expo Go) |
+| `npm run start:tunnel` | wie oben, über Tunnel (wenn WLAN Geräte isoliert) |
+| `npm run check` | TypeScript-Prüfung + Lint |
+| `npx expo export` | Test-Build aller Plattformen (prüft, ob alles bündelt) |

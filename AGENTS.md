@@ -1,3 +1,5 @@
+> **STORYTUNE:** Read `PROJECT_STATUS.md` first – it contains the project goal, architecture, decisions and the current phase. Do not start a new phase without the owner's approval.
+
 This is an Expo/React Native mobile application. Prioritize mobile-first patterns, performance, and cross-platform compatibility.
 
 ## Expo has changed — do not trust your training data
