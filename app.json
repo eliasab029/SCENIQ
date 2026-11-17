@@ -21,7 +21,12 @@
     },
     "web": {
       "output": "single",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./public/favicon-48.png",
+      "name": "STORYTUNE",
+      "shortName": "STORYTUNE",
+      "lang": "de",
+      "themeColor": "#0A0A0C",
+      "backgroundColor": "#0A0A0C"
     },
     "plugins": [
       "expo-router",

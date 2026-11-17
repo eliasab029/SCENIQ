@@ -50,7 +50,8 @@
     "lint": "expo lint",
     "typecheck": "tsc --noEmit",
     "check": "tsc --noEmit && expo lint",
-    "check-env": "bash scripts/check-env.sh"
+    "build:web": "node scripts/build-web.mjs",
+    "preview:web": "npx serve dist"
   },
   "private": true
 }

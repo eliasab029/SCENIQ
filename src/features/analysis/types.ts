@@ -1,19 +1,19 @@
 /**
  * Structured result of an image analysis.
  *
- * Every analyzer (Ollama, a future on-device model, the demo mode) must return
+ * Every analyzer (on-device model, a possible cloud model, the demo mode) must return
  * exactly this shape. The recommender only ever reads this – never raw model text.
  */
 
 /** Where an analysis came from. Shown in the UI so we never pretend rule-based output is AI. */
-export type AnalysisSource = 'ollama' | 'on-device' | 'demo';
+export type AnalysisSource = 'on-device' | 'cloud' | 'demo';
 
 export type Tempo = 'slow' | 'mid' | 'fast';
 
 export interface ImageAnalysis {
   schemaVersion: 1;
   source: AnalysisSource;
-  /** Model identifier, e.g. "qwen3-vl:4b". Undefined for demo mode. */
+  /** Model identifier, e.g. "clip-vit-base-patch32". Undefined for demo mode. */
   model?: string;
 
   /** 1. + 2. What is visible and where/in which situation */

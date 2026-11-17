@@ -103,7 +103,7 @@ export default function UploadScreen() {
               Welches Foto wird deine Story?
             </AppText>
             <AppText variant="callout" tone="secondary" align="center" style={styles.dropHint}>
-              JPG, PNG, HEIC – das Foto bleibt auf deinem Gerät bzw. in deinem lokalen Netzwerk.
+              JPG, PNG oder HEIC. Dein Foto bleibt auf deinem Gerät.
             </AppText>
           </PressableScale>
 

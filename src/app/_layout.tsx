@@ -16,7 +16,7 @@ import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { getDatabase } from '@/data/database';
+import { store } from '@/data/store';
 import { SettingsProvider } from '@/data/settings';
 import { colors } from '@/theme';
 
@@ -45,8 +45,8 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    // Open + migrate the local database early. Failure is non-fatal and shown in Settings.
-    getDatabase().catch(() => {});
+    // Open the local store early (and ask the browser to keep it). Failure is non-fatal and shown in Settings.
+    store.info().catch(() => {});
   }, []);
 
   const ready = fontsLoaded || !!fontError;

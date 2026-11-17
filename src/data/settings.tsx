@@ -3,24 +3,18 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 
 /**
  * Simple app settings, persisted with AsyncStorage.
- * (Structured data like analyses and the music profile lives in SQLite.)
+ * (Structured data like analyses and the music profile lives in the document store, see data/store.)
  */
 export interface AppSettings {
-  /** e.g. "http://192.168.178.20:11434" – the PC running Ollama */
-  ollamaUrl: string;
-  /** Ollama vision model, e.g. "qwen3-vl:4b" */
-  ollamaModel: string;
-  /** Force demo mode even if Ollama is reachable. UI toggle is added in Phase 4. */
+  /** Use the rule-based demo analysis instead of the on-device AI. UI toggle is added in Phase 4. */
   forceDemoMode: boolean;
 }
 
 export const DEFAULT_SETTINGS: AppSettings = {
-  ollamaUrl: '',
-  ollamaModel: 'qwen3-vl:4b',
   forceDemoMode: false,
 };
 
-const STORAGE_KEY = 'storytune.settings.v1';
+const STORAGE_KEY = 'storytune.settings.v2';
 
 type SettingsContextValue = {
   settings: AppSettings;

@@ -3,12 +3,9 @@ import { StyleSheet, View } from 'react-native';
 
 import { LogoMark } from '@/components/brand/Logo';
 import { AppText, Card, ListRow, Screen, SectionHeader } from '@/components/ui';
-import { useSettings } from '@/data/settings';
 import { colors, spacing } from '@/theme';
 
 export default function ProfileScreen() {
-  const { settings } = useSettings();
-
   return (
     <Screen withTabBar>
       <AppText variant="display">Profil</AppText>
@@ -42,12 +39,7 @@ export default function ProfileScreen() {
       <View style={styles.section}>
         <SectionHeader title="App" />
         <Card padded={false}>
-          <ListRow
-            icon="cpu"
-            title="Bild-KI"
-            subtitle={settings.ollamaUrl ? `Ollama · ${settings.ollamaModel}` : 'Noch nicht eingerichtet'}
-            onPress={() => router.push('/settings')}
-          />
+          <ListRow icon="cpu" title="Bild-KI" subtitle="Läuft auf deinem Gerät" plannedPhase={4} />
           <Divider />
           <ListRow icon="settings" title="Einstellungen" onPress={() => router.push('/settings')} />
         </Card>

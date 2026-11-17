@@ -2,96 +2,43 @@
 
 Persönlicher KI-Musikberater für Instagram Stories. Foto hochladen → Wirkung wählen → passende Songs, abgestimmt auf Bild **und** persönlichen Musikgeschmack.
 
+STORYTUNE ist eine **Web-App für den Handy-Browser**: Link öffnen, fertig. Es muss nichts installiert werden, weder auf dem PC noch auf dem Handy.
+
 > Projektstand, Architektur und nächste Schritte: **[PROJECT_STATUS.md](./PROJECT_STATUS.md)**
 
 ---
 
-## App auf dem Smartphone starten (Expo Go)
+## App öffnen
 
-### Einmalig auf dem PC
+1. Den Link der App im Handy-Browser öffnen (Safari auf dem iPhone, Chrome auf Android).
+   Der Link hat die Form `https://<github-name>.github.io/<repository>/`.
+2. **Empfohlen:** zum Home-Bildschirm hinzufügen. Dann startet die App im Vollbild wie eine normale App, und der Browser löscht ihre Daten nicht so leicht.
+   - **iPhone (Safari):** unten auf „Teilen“ tippen → „Zum Home-Bildschirm“
+   - **Android (Chrome):** oben rechts ⋮ → „App installieren“ bzw. „Zum Startbildschirm hinzufügen“
 
-1. **Node.js** installieren – Version **22.13 oder neuer** (LTS) von <https://nodejs.org>.
-2. **Git** installieren (empfohlen) – <https://git-scm.com>.
-3. Projektordner entpacken, z. B. nach `C:\Projekte\storytune`.
-4. Im Projektordner ein Terminal öffnen (Windows: im Ordner `Shift + Rechtsklick` → „In Terminal öffnen“) und ausführen:
+## Wie die App online kommt
 
-```bash
-npm install
-```
+Die App liegt kostenlos auf **GitHub Pages**. Bei jeder Änderung am Code baut GitHub sie automatisch neu und veröffentlicht sie (`.github/workflows/deploy-web.yml`).
 
-### Einmalig auf dem Smartphone
+Einmalige Einrichtung, komplett im Browser:
 
-- **Expo Go** aus dem App Store bzw. Google Play Store installieren (bzw. aktualisieren – das Projekt nutzt **Expo SDK 58**).
+1. Kostenloses Konto auf <https://github.com> anlegen.
+2. Auf claude.ai das GitHub-Konto mit Claude verbinden.
+3. Ein leeres Repository anlegen, z. B. `storytune`.
+4. Im Repository: **Settings → Pages → Source: „GitHub Actions“**.
 
-### Jedes Mal zum Starten
-
-```bash
-npx expo start
-```
-
-- Im Terminal erscheint ein QR-Code.
-- **Android:** In Expo Go auf „Scan QR code“ tippen.
-- **iPhone:** QR-Code mit der normalen Kamera-App scannen.
-- PC und Handy müssen im **selben WLAN** sein.
-
-**Verbindet sich nicht?**
-
-- Windows fragt beim ersten Start nach der Firewall → für **private Netzwerke** erlauben.
-- Gäste-/Uni-/Firmen-WLANs blockieren oft Geräte untereinander. Dann:
-
-```bash
-npx expo start --tunnel
-```
-
-- Meldet Expo Go „incompatible SDK“: Expo Go im Store aktualisieren.
+Danach kann Claude den Code direkt dorthin übertragen, und die App ist unter `https://<github-name>.github.io/storytune/` erreichbar.
 
 ---
 
-## Lokale Bild-KI (Ollama) – Vorbereitung für Phase 4
-
-1. Ollama installieren: <https://ollama.com/download>
-2. Bildmodell laden (Empfehlung siehe `scripts/check-env.ps1`):
-
-```bash
-ollama pull qwen3-vl:4b
-```
-
-3. Ollama im WLAN erreichbar machen (Windows):
-   - Systemsteuerung → „Umgebungsvariablen für dieses Konto bearbeiten“ → Neu: `OLLAMA_HOST` = `0.0.0.0`
-   - Ollama beenden (Tray-Icon) und neu starten.
-   - Firewall-Freigabe (PowerShell **als Administrator**):
-
-```powershell
-New-NetFirewallRule -DisplayName "Ollama (STORYTUNE)" -Direction Inbound -Protocol TCP -LocalPort 11434 -Action Allow -Profile Private
-```
-
-4. In der App: **Einstellungen → Server-Adresse** = IP deines PCs (z. B. `192.168.178.20`) → **Verbindung testen**.
-
----
-
-## Umgebung prüfen
-
-Windows (PowerShell, im Projektordner):
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts\check-env.ps1
-```
-
-macOS / Linux:
-
-```bash
-bash scripts/check-env.sh
-```
-
-Das Skript zeigt Node/Git/Ollama-Versionen, RAM, Grafikkarte, die IP-Adresse für die App und empfiehlt ein Bildmodell. Es verändert nichts.
-
----
-
-## Entwicklerbefehle
+## Für Entwickler
 
 | Befehl | Zweck |
 | --- | --- |
-| `npm start` | Entwicklungsserver (QR-Code für Expo Go) |
-| `npm run start:tunnel` | wie oben, über Tunnel (wenn WLAN Geräte isoliert) |
+| `npm run web` | Entwicklungsserver im Browser |
 | `npm run check` | TypeScript-Prüfung + Lint |
-| `npx expo export` | Test-Build aller Plattformen (prüft, ob alles bündelt) |
+| `npm run build:web` | Web-Build nach `dist/` (`EXPO_BASE_URL=/repo` für eine Unterseite) |
+| `npm run preview:web` | fertigen Build lokal ansehen |
+| `npm start` | Entwicklung mit Expo Go (für eine spätere native App) |
+
+Voraussetzung nur für Entwickler: Node.js ≥ 22.13.

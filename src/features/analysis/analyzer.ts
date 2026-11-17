@@ -3,12 +3,13 @@ import type { AnalysisSource, ImageAnalysis } from './types';
 /**
  * Exchangeable image-analysis interface.
  *
- * Today: OllamaAnalyzer (PC in the local network) and DemoAnalyzer (offline fallback).
- * Later: an on-device analyzer can implement the same interface without touching any screen.
+ * Planned (Phase 4): OnDeviceAnalyzer (vision model running in the browser) and
+ * DemoAnalyzer (rule-based fallback, always labelled "Demo").
+ * Possible later: a cloud analyzer – it implements the same interface without touching any screen.
  */
 export interface ImageAnalyzer {
   readonly source: AnalysisSource;
-  /** Human-readable name for the UI, e.g. "Ollama · qwen3-vl:4b" */
+  /** Human-readable name for the UI, e.g. "Auf dem Gerät · CLIP" */
   readonly label: string;
   /** True only if a real vision model looks at the pixels. Demo/rule-based = false. */
   readonly isRealAI: boolean;
