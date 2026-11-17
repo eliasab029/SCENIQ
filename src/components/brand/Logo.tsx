@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { AppText } from '@/components/ui/AppText';
 import { colors, fonts, gradients, radii } from '@/theme';
 
-/** Equalizer bar heights (relative) that form the STORYTUNE mark. */
+/** Equalizer bar heights (relative) that form the SCENIQ mark. */
 const BARS = [0.45, 0.85, 0.6, 1, 0.5];
 
 export function LogoMark({ size = 32 }: { size?: number }) {
@@ -36,9 +36,9 @@ export function LogoMark({ size = 32 }: { size?: number }) {
 
 export function Logo({ size = 32 }: { size?: number }) {
   return (
-    <View style={styles.row} accessibilityRole="header" accessibilityLabel="STORYTUNE">
+    <View style={styles.row} accessibilityRole="header" accessibilityLabel="SCENIQ">
       <LogoMark size={size} />
-      <AppText style={[styles.wordmark, { fontSize: size * 0.44 }]}>STORYTUNE</AppText>
+      <AppText style={[styles.wordmark, { fontSize: size * 0.44 }]}>SCENIQ</AppText>
     </View>
   );
 }

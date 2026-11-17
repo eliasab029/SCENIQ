@@ -26,7 +26,7 @@ export type EffectId =
 export const SURPRISE_EFFECT: StoryEffect = {
   id: 'surprise',
   label: 'Überrasche mich',
-  hint: 'STORYTUNE entscheidet anhand von Foto und Geschmack.',
+  hint: 'SCENIQ entscheidet anhand von Foto und Geschmack.',
 };
 
 export const STORY_EFFECTS: StoryEffect[] = [

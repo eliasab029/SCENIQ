@@ -39,7 +39,7 @@ export default function EffectScreen() {
         <View style={styles.introText}>
           <AppText variant="display">Wie soll deine Story wirken?</AppText>
           <AppText variant="callout" tone="secondary">
-            Optional. Ohne Auswahl entscheidet STORYTUNE selbst.
+            Optional. Ohne Auswahl entscheidet SCENIQ selbst.
           </AppText>
         </View>
       </Animated.View>

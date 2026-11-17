@@ -8,7 +8,7 @@ export * from './types';
  *
  * Schema changes: bump DB_VERSION and handle the new version in onupgradeneeded.
  */
-const DB_NAME = 'storytune';
+const DB_NAME = 'sceniq';
 const DB_VERSION = 1;
 
 let dbPromise: Promise<IDBDatabase> | null = null;

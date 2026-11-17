@@ -1,8 +1,8 @@
 /**
- * Builds the STORYTUNE web app into ./dist.
+ * Builds the SCENIQ web app into ./dist.
  *
  *   node scripts/build-web.mjs                    → served from the domain root
- *   EXPO_BASE_URL=/storytune node scripts/...     → served from a sub-path (GitHub Pages)
+ *   EXPO_BASE_URL=/sceniq node scripts/...     → served from a sub-path (GitHub Pages)
  *
  * Steps: expo export (web) → add PWA / iOS meta tags → 404.html fallback → .nojekyll
  */
@@ -29,7 +29,7 @@ const head = `
     <meta name="color-scheme" content="dark" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-title" content="STORYTUNE" />
+    <meta name="apple-mobile-web-app-title" content="SCENIQ" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="manifest" href="${base}/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="${base}/apple-touch-icon.png" />

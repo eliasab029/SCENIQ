@@ -1,7 +1,7 @@
-# STORYTUNE – Projektstatus
+# SCENIQ – Projektstatus
 
 > **Für die nächste Session zuerst lesen.** Dieses Dokument ist die Übergabe zwischen Sessions.
-> Letzte Aktualisierung: **17.11.2026 – Ende Phase 1 (Umstellung auf Web-App)**
+> Letzte Aktualisierung: **17.11.2026 – Ende Phase 1 (Web-App, Umbenennung in SCENIQ, GitHub eingerichtet)**
 
 ---
 
@@ -10,7 +10,9 @@
 | | |
 | --- | --- |
 | **Aktuelle Phase** | Phase 1 abgeschlossen ✅ – wartet auf Freigabe für Phase 2 |
-| **Blockiert durch** | GitHub-Konto des Nutzers (für Online-Link + Speicherung des Codes), siehe Abschnitt 10 |
+| **Name** | **SCENIQ** (bis 17.11. Arbeitstitel „STORYTUNE“) |
+| **Repository** | <https://github.com/eliasab029/SCENIQ> (öffentlich, Branch `main`) |
+| **App-Link** | <https://eliasab029.github.io/SCENIQ/> |
 | **Plattform** | **Web-App (PWA) im Handy-Browser** – der Nutzer kann nichts installieren (Vorgabe vom 17.11.) |
 | **Stack** | Expo SDK 58 (Web-Export) · React Native Web · React 19 · TypeScript 6 · Expo Router 58 |
 | **Hosting** | GitHub Pages (kostenlos), automatischer Build per GitHub Actions |
@@ -21,7 +23,7 @@
 
 ## 1. Projektziel
 
-STORYTUNE ist ein persönlicher KI-Musikberater für Instagram Stories:
+SCENIQ (Arbeitstitel bis 17.11.: STORYTUNE) ist ein persönlicher KI-Musikberater für Instagram Stories:
 
 1. Nutzer lädt ein Foto hoch (Galerie oder Kamera).
 2. Optional: gewünschte Wirkung wählen (11 Kategorien + „Überrasche mich“).
@@ -37,7 +39,7 @@ STORYTUNE ist ein persönlicher KI-Musikberater für Instagram Stories:
 
 ```
 ┌──────────────────────── Handy-Browser (Safari / Chrome) ─────────────────────┐
-│  STORYTUNE als Web-App, optional auf dem Home-Bildschirm                     │
+│  SCENIQ als Web-App, optional auf dem Home-Bildschirm                        │
 │                                                                              │
 │  Screens (src/app, Expo Router)                                              │
 │     │                                                                        │
@@ -75,7 +77,7 @@ STORYTUNE ist ein persönlicher KI-Musikberater für Instagram Stories:
 ## 3. Projektstruktur
 
 ```
-storytune/
+SCENIQ/
 ├─ PROJECT_STATUS.md            ← dieses Dokument
 ├─ README.md                    ← App öffnen, GitHub-Einrichtung, Befehle
 ├─ AGENTS.md                    ← Hinweise für KI-Assistenten (verweist hierher)
@@ -141,11 +143,11 @@ Alle Werte in `src/theme/tokens.ts`. Komponenten verwenden **niemals** feste Far
 
 **Dokumentenspeicher** (`src/data/store`): Sammlungen `analyses`, `favorites`, `feedback`, `profile`; jedes Dokument ist ein JSON-Objekt mit einer ID.
 
-- Web: IndexedDB-Datenbank `storytune` (Version 1, ein Object Store pro Sammlung). Beim Start wird der Browser gebeten, die Daten dauerhaft zu behalten (`navigator.storage.persist`).
+- Web: IndexedDB-Datenbank `sceniq` (Version 1, ein Object Store pro Sammlung). Beim Start wird der Browser gebeten, die Daten dauerhaft zu behalten (`navigator.storage.persist`).
 - Native (später): SQLite-Tabelle `documents(collection, id, value_json, updated_at)`.
 - Die Repositories (Analysen speichern, Feedback auswerten …) entstehen in Phase 3 auf dieser Schnittstelle.
 
-**Einstellungen**: `storytune.settings.v2` → `{ forceDemoMode }` (Schalter folgt in Phase 4).
+**Einstellungen**: `sceniq.settings.v2` → `{ forceDemoMode }` (Schalter folgt in Phase 4).
 
 **Song-Katalog**: TypeScript-Datei im Code – überprüfbar, versionierbar. Unsichere Angaben stehen in `unverifiedFields`.
 
@@ -169,6 +171,7 @@ Alle Werte in `src/theme/tokens.ts`. Komponenten verwenden **niemals** feste Far
 | E10 | Spotify nur über Such-Links | Kein Konto, kein Premium, keine API. |
 | E11 | Reanimated-Werte über `.get()`/`.set()` | Pflicht für den aktivierten React Compiler. |
 | E12 | `baseUrl` aus `EXPO_BASE_URL` + `404.html`-Kopie | Die App läuft unter `/<repository>/`; Direktlinks wie `/settings` funktionieren trotz statischem Hosting. |
+| E13 | App-Name **SCENIQ** – *17.11.* | Entscheidung des Nutzers; Repository heißt gleich. Interne Namen (IndexedDB `sceniq`, Einstellungen `sceniq.settings.v2`) wurden mit umbenannt, da es noch keine Nutzerdaten gab. |
 
 ---
 
@@ -206,7 +209,7 @@ Alle Werte in `src/theme/tokens.ts`. Komponenten verwenden **niemals** feste Far
 ### Geprüft (17.11.)
 
 - `tsc` ✅ · `expo lint` ✅ · Export für Web, Android und iOS ✅
-- Web-Build unter `/storytune/` mit GitHub-Pages-Verhalten (unbekannte Pfade → `404.html`) im Handyformat getestet: Tabs, Direktlink `/settings`, Manifest, Icons – keine fehlgeschlagenen Dateien, keine Laufzeitfehler.
+- Web-Build unter einer Unterseite (`/storytune/`, damaliger Name) mit GitHub-Pages-Verhalten (unbekannte Pfade → `404.html`) im Handyformat getestet: Tabs, Direktlink `/settings`, Manifest, Icons – keine fehlgeschlagenen Dateien, keine Laufzeitfehler.
 - IndexedDB: Testeintrag übersteht ein Neuladen der Seite.
 - Upload-Ablauf (Galerie → Vorschau → Wirkung) am 16.11. durchgeklickt.
 
@@ -222,7 +225,7 @@ Alle Werte in `src/theme/tokens.ts`. Komponenten verwenden **niemals** feste Far
 
 | # | Punkt | Auswirkung | Lösung / wann |
 | --- | --- | --- | --- |
-| O1 | **Noch kein öffentlicher Link.** GitHub ist nicht verbunden. | Nutzer kann die App noch nicht auf dem Handy öffnen. | Nutzer richtet GitHub ein (Abschnitt 10) → Code pushen → Link testen. |
+| O1 | Erste Veröffentlichung auf GitHub Pages muss bestätigt werden. | Link funktioniert erst, wenn „Settings → Pages → Source: GitHub Actions“ gesetzt ist und der Build im Reiter „Actions“ grün ist. | Beim Start der nächsten Session prüfen. |
 | O2 | **Noch nicht auf einem echten Handy getestet**, nur im Browser im Handyformat. | Safe Areas, Kamera, Home-Bildschirm-Modus ungeprüft. | Sobald der Link steht. |
 | O3 | **iPhone/Safari löscht Website-Daten nach 7 Tagen ohne Nutzung**, wenn die App nicht auf dem Home-Bildschirm liegt. | Verlauf/Profil könnten verloren gehen. | Hinweis in den Einstellungen; in Phase 3 zusätzlich Export/Import des Profils prüfen. |
 | O4 | Fotos aus der Auswahl sind im Browser nur temporäre `blob:`-Adressen. | Für den Verlauf müssen sie verkleinert in IndexedDB gespeichert werden. | Phase 3. |
@@ -234,18 +237,10 @@ Alle Werte in `src/theme/tokens.ts`. Komponenten verwenden **niemals** feste Far
 
 ## 10. Nächste Schritte
 
-### Vom Nutzer (ca. 10 Minuten, alles im Browser)
+### Vor Phase 2
 
-1. Kostenloses GitHub-Konto anlegen: <https://github.com/signup>.
-2. Auf claude.ai GitHub mit Claude verbinden (Einstellungen → Konnektoren/GitHub).
-3. Leeres Repository `storytune` anlegen.
-4. Im Repository: **Settings → Pages → Source: „GitHub Actions“**.
-5. In der nächsten Session den Repository-Namen nennen (`<github-name>/storytune`).
-
-### Von Claude, sobald GitHub steht
-
-1. Projekt in das Repository übertragen → GitHub baut und veröffentlicht automatisch.
-2. Link prüfen; Nutzer öffnet ihn auf dem Handy und legt die App auf den Home-Bildschirm.
+1. Prüfen, ob die Veröffentlichung geklappt hat (Repository → Reiter **Actions**: grüner Haken).
+2. Nutzer öffnet <https://eliasab029.github.io/SCENIQ/> auf dem Handy, legt die App auf den Home-Bildschirm und meldet, was ihm auffällt.
 
 ### Phase 2 – Benutzeroberfläche (wartet auf Freigabe)
 
@@ -262,6 +257,6 @@ Danach: Phase 3 Musikprofil + Speicherung → Phase 4 KI im Browser → Phase 5 
 
 ## 11. Arbeitsweise über mehrere Sessions
 
-- Claudes Arbeitsumgebung ist ein Cloud-Container, der nach der Session gelöscht wird. Der Code muss deshalb ins GitHub-Repository (empfohlen) oder als ZIP gesichert werden.
+- Claudes Arbeitsumgebung ist ein Cloud-Container, der nach der Session gelöscht wird. Der Code liegt deshalb im GitHub-Repository `eliasab029/SCENIQ`; jede Änderung wird dorthin gepusht und automatisch veröffentlicht.
 - Das Projekt ist ein Git-Repository (Branch `main`); jede Phase endet mit einem Commit.
 - Zu Beginn jeder Session: dieses Dokument lesen, `npm install`, `npm run check`.

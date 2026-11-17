@@ -1,5 +1,5 @@
 /**
- * STORYTUNE Design Tokens
+ * SCENIQ Design Tokens
  *
  * Single source of truth for every visual value in the app.
  * Components never hard-code colors, spacing or font sizes – they import from here.

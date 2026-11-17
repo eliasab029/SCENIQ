@@ -47,7 +47,7 @@ export default function UploadScreen() {
       if (!permission.granted) {
         Alert.alert(
           'Kamerazugriff benötigt',
-          'Erlaube STORYTUNE den Zugriff auf die Kamera, um direkt ein Foto aufzunehmen.',
+          'Erlaube SCENIQ den Zugriff auf die Kamera, um direkt ein Foto aufzunehmen.',
           [
             { text: 'Abbrechen', style: 'cancel' },
             ...(permission.canAskAgain ? [] : [{ text: 'Einstellungen', onPress: () => Linking.openSettings() }]),

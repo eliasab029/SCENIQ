@@ -58,7 +58,7 @@ export default function HomeScreen() {
             <View style={styles.heroText}>
               <AppText variant="title">Foto auswählen</AppText>
               <AppText variant="body" tone="secondary">
-                Lade das Bild deiner Story hoch – STORYTUNE findet die Musik, die es trägt.
+                Lade das Bild deiner Story hoch – SCENIQ findet die Musik, die es trägt.
               </AppText>
             </View>
             <View style={styles.heroCta}>

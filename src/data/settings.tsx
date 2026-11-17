@@ -14,7 +14,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   forceDemoMode: false,
 };
 
-const STORAGE_KEY = 'storytune.settings.v2';
+const STORAGE_KEY = 'sceniq.settings.v2';
 
 type SettingsContextValue = {
   settings: AppSettings;

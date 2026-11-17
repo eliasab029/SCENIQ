@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "STORYTUNE",
-    "slug": "storytune",
+    "name": "SCENIQ",
+    "slug": "sceniq",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "storytune",
+    "scheme": "sceniq",
     "userInterfaceStyle": "dark",
     "ios": {
       "icon": "./assets/expo.icon"
@@ -22,8 +22,8 @@
     "web": {
       "output": "single",
       "favicon": "./public/favicon-48.png",
-      "name": "STORYTUNE",
-      "shortName": "STORYTUNE",
+      "name": "SCENIQ",
+      "shortName": "SCENIQ",
       "lang": "de",
       "themeColor": "#0A0A0C",
       "backgroundColor": "#0A0A0C"
@@ -42,8 +42,8 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "STORYTUNE braucht Zugriff auf deine Fotos, um passende Musik für deine Story zu finden.",
-          "cameraPermission": "STORYTUNE braucht die Kamera, um direkt ein Foto für deine Story aufzunehmen.",
+          "photosPermission": "SCENIQ braucht Zugriff auf deine Fotos, um passende Musik für deine Story zu finden.",
+          "cameraPermission": "SCENIQ braucht die Kamera, um direkt ein Foto für deine Story aufzunehmen.",
           "microphonePermission": false
         }
       ]

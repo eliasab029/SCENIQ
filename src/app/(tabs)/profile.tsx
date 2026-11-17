@@ -15,7 +15,7 @@ export default function ProfileScreen() {
         <View style={styles.heroText}>
           <AppText variant="heading">Dein Musikgeschmack</AppText>
           <AppText variant="callout" tone="secondary">
-            Je mehr du STORYTUNE nutzt, desto genauer werden die Empfehlungen.
+            Je mehr du SCENIQ nutzt, desto genauer werden die Empfehlungen.
           </AppText>
         </View>
       </Card>

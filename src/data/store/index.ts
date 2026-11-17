@@ -10,7 +10,7 @@ export * from './types';
  *
  * Migrations are indexed by PRAGMA user_version: append, never edit.
  */
-const DB_NAME = 'storytune.db';
+const DB_NAME = 'sceniq.db';
 
 const MIGRATIONS: string[] = [
   `CREATE TABLE IF NOT EXISTS documents (

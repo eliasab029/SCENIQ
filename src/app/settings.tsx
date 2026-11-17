@@ -59,7 +59,7 @@ export default function SettingsScreen() {
         <Card padded={false}>
           <ListRow
             icon="info"
-            title="STORYTUNE"
+            title="SCENIQ"
             trailing={
               <AppText variant="callout" tone="tertiary">
                 Version {Constants.expoConfig?.version ?? '–'}
@@ -87,7 +87,7 @@ function InstallHint() {
     <Card style={[styles.cardGap, styles.installCard]}>
       <AppText variant="heading">Als App auf den Home-Bildschirm</AppText>
       <AppText variant="callout" tone="secondary">
-        {steps} Dann startet STORYTUNE im Vollbild wie eine normale App, und deine Daten bleiben zuverlässiger
+        {steps} Dann startet SCENIQ im Vollbild wie eine normale App, und deine Daten bleiben zuverlässiger
         gespeichert.
       </AppText>
     </Card>
